@@ -1,0 +1,37 @@
+{
+  "name": "create-react-app-express",
+  "version": "0.1.0",
+  "description": "Express server for your Create React App, ready for SSR",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antonybudianto/create-react-app-express.git"
+  },
+  "keywords": [
+    "express",
+    "react",
+    "create-react-app",
+    "ssr"
+  ],
+  "author": "Antony Budianto <antonybudianto@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/antonybudianto/create-react-app-express/issues"
+  },
+  "homepage": "https://github.com/antonybudianto/create-react-app-express#readme",
+  "devDependencies": {
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react-app": "^3.0.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "compression": "^1.7.0",
+    "express": "^4.15.4",
+    "morgan": "^1.8.2",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  }
+}
