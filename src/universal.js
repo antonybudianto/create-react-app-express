@@ -12,17 +12,15 @@ module.exports = function (clientBuildPath, universalRender) {
         console.error('read err', err)
         return res.status(404).end()
       }
-      const context = {}
-      const markup = renderToString(universalRender(req, res))
 
-      if (context.url) {
-        // Somewhere a `<Redirect>` was rendered
-        redirect(301, context.url)
-      } else {
-        // we're good, send the response
-        const RenderedApp = htmlData.replace('{{SSR}}', markup)
-        res.send(RenderedApp)
+      const markup = universalRender(req, res, renderToString)
+
+      if (markup === undefined) {
+        return;
       }
+
+      const RenderedApp = htmlData.replace('{{SSR}}', markup)
+      res.send(RenderedApp)
     })
   }
 
