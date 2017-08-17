@@ -21,11 +21,8 @@ module.exports = function(clientBuildPath, universalRender) {
   // Setup logger
   app.use(morgan('combined'))
 
-  // app.use('/', index)
-  app.get('/', universalLoader)
-
   // Serve static assets
-  app.use(express.static(clientBuildPath))
+  app.use(express.static(clientBuildPath, { index: false }))
 
   // Always return the main index.html, so react-router render the route in the client
   app.use('/', universalLoader)
