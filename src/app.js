@@ -1,13 +1,11 @@
-const path = require('path')
-const fs = require('fs')
+const bodyParser = require('body-parser');
+const compression = require('compression');
+const express = require('express');
+const morgan = require('morgan');
 
-const bodyParser = require('body-parser')
-const compression = require('compression')
-const express = require('express')
-const morgan = require('morgan')
-
-module.exports = function(clientBuildPath, universalRender) {
-  const universalLoader = require('./universal')(clientBuildPath, universalRender)
+function createReactAppExpress(options) {
+  const { clientBuildPath } = options;
+  const universalLoader = require('./universal')(options);
 
   const app = express()
 
@@ -29,3 +27,5 @@ module.exports = function(clientBuildPath, universalRender) {
 
   return app;
 }
+
+module.exports = createReactAppExpress;

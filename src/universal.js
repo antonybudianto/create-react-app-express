@@ -1,9 +1,8 @@
 const path = require('path');
 const fs = require('fs');
 
-const { renderToString } = require('react-dom/server');
-
-module.exports = function (clientBuildPath, universalRender) {
+function universalMiddleware(options) {
+  const { clientBuildPath, universalRender } = options;
   function universalLoader(req, res) {
     const filePath = path.resolve(clientBuildPath, 'index.html')
 
@@ -13,9 +12,9 @@ module.exports = function (clientBuildPath, universalRender) {
         return res.status(404).end()
       }
 
-      const markup = universalRender(req, res, renderToString)
+      const markup = universalRender(req, res);
 
-      if (markup === undefined) {
+      if (markup === null) {
         return;
       }
 
@@ -26,3 +25,5 @@ module.exports = function (clientBuildPath, universalRender) {
 
   return universalLoader;
 }
+
+module.exports = universalMiddleware;
