@@ -18,7 +18,7 @@ function universalMiddleware(options) {
         return;
       }
 
-      const RenderedApp = htmlData.replace('{{SSR}}', markup)
+      const RenderedApp = htmlData.replace('<div id="root"></div>', `<div id="root">${markup}</div>`)
       res.send(RenderedApp)
     })
   }
