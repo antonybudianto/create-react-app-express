@@ -2,6 +2,7 @@ const bodyParser = require('body-parser');
 const compression = require('compression');
 const express = require('express');
 const morgan = require('morgan');
+const proxy = require('http-proxy-middleware');
 
 function createReactAppExpress(options) {
   const { clientBuildPath } = options;
@@ -20,7 +21,17 @@ function createReactAppExpress(options) {
   app.use(morgan('combined'))
 
   // Serve static assets
-  app.use(express.static(clientBuildPath, { index: false }))
+  if (process.env.NODE_ENV === 'development') {
+    // Connect proxy to Create React App dev server
+    app.use(proxy(['**', '!/'], {
+      target: 'http://localhost:3000',
+      changeOrigin: true,
+      ws: true
+    }));
+    console.log('Connected to CRA Client dev server');
+  } else {
+    app.use(express.static(clientBuildPath, { index: false }));
+  }
 
   // Always return the main index.html, so react-router render the route in the client
   app.use('/', universalLoader)

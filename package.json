@@ -1,6 +1,6 @@
 {
   "name": "create-react-app-express",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Express server for your Create React App, ready for SSR",
   "main": "src/index.js",
   "scripts": {
@@ -30,6 +30,7 @@
     "body-parser": "^1.17.2",
     "compression": "^1.7.0",
     "express": "^4.15.4",
+    "http-proxy-middleware": "0.17.4",
     "morgan": "^1.8.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
