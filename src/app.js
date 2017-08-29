@@ -2,7 +2,6 @@ const bodyParser = require('body-parser');
 const compression = require('compression');
 const express = require('express');
 const morgan = require('morgan');
-const proxy = require('http-proxy-middleware');
 
 function createReactAppExpress(options) {
   const { clientBuildPath } = options;
@@ -23,6 +22,7 @@ function createReactAppExpress(options) {
   // Serve static assets
   if (process.env.NODE_ENV === 'development') {
     // Connect proxy to Create React App dev server
+    const proxy = require('http-proxy-middleware');
     app.use(proxy(['**', '!/'], {
       target: 'http://localhost:3000',
       changeOrigin: true,
