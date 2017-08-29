@@ -5,7 +5,7 @@ Create React App Express
 
 Express server for your Create React App projects featuring server-side rendering.
 
-Please visit [Create React App Universal](https://github.com/antonybudianto/create-react-app-universal) for the usage.
+Please visit [Create React App Universal CLI](https://github.com/antonybudianto/cra-universal) for the usage.
 
 ### Credits
 - Based on https://github.com/ayroblu/ssr-create-react-app-v2
