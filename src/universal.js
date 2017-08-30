@@ -54,7 +54,7 @@ function universalMiddleware(options) {
 
       const RenderedApp = processHtmlData(htmlData, markup);
       res.send(RenderedApp);
-    })
+    });
   }
 
   return universalLoader;

@@ -1,6 +1,6 @@
 {
   "name": "create-react-app-express",
-  "version": "0.6.4",
+  "version": "0.6.5",
   "description": "Express server for your Create React App, ready for SSR",
   "main": "src/index.js",
   "scripts": {
