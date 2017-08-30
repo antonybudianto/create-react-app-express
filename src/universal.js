@@ -18,15 +18,15 @@ function handleDevMode(req, res, options) {
         }
 
         const RenderedApp = processHtmlData(htmlData, markup);
-        res.send(RenderedApp)
+        res.send(RenderedApp);
       } catch (e) {
         console.error(e.message);
-        return res.status(404).end()
+        return res.status(404).end();
       }
     });
   }).on('error', function(e) {
     console.error(e.message);
-    return res.status(404).end()
+    return res.status(404).end();
   });
 }
 
@@ -38,12 +38,12 @@ function universalMiddleware(options) {
       return;
     }
 
-    const filePath = path.resolve(clientBuildPath, 'index.html')
+    const filePath = path.resolve(clientBuildPath, 'index.html');
 
     fs.readFile(filePath, 'utf8', (err, htmlData) => {
       if (err) {
-        console.error('read err', err)
-        return res.status(404).end()
+        console.error('read err', err);
+        return res.status(404).end();
       }
 
       const markup = universalRender(req, res);
@@ -53,7 +53,7 @@ function universalMiddleware(options) {
       }
 
       const RenderedApp = processHtmlData(htmlData, markup);
-      res.send(RenderedApp)
+      res.send(RenderedApp);
     })
   }
 

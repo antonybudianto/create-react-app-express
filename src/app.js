@@ -7,17 +7,17 @@ function createReactAppExpress(options) {
   const { clientBuildPath } = options;
   const universalLoader = require('./universal')(options);
 
-  const app = express()
+  const app = express();
 
   // Support Gzip
-  app.use(compression())
+  app.use(compression());
 
   // Support post requests with body data (doesn't support multipart, use multer)
-  app.use(bodyParser.json())
-  app.use(bodyParser.urlencoded({ extended: false }))
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: false }));
 
   // Setup logger
-  app.use(morgan('combined'))
+  app.use(morgan('combined'));
 
   // Serve static assets
   if (process.env.NODE_ENV === 'development') {
@@ -34,7 +34,7 @@ function createReactAppExpress(options) {
   }
 
   // Always return the main index.html, so react-router render the route in the client
-  app.use('/', universalLoader)
+  app.use('/', universalLoader);
 
   return app;
 }
