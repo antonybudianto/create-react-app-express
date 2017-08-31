@@ -4,7 +4,7 @@
   "description": "Express server for your Create React App, ready for SSR",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,8 @@
   "devDependencies": {
     "babel-preset-env": "^1.6.0",
     "babel-preset-react-app": "^3.0.2",
-    "http-proxy-middleware": "0.17.4"
+    "http-proxy-middleware": "0.17.4",
+    "jest": "^20.0.4"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
