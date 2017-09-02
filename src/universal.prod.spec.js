@@ -83,7 +83,7 @@ test('send response successfully', () => {
 test('support async universal render callback', () => {
   const config = {
     clientBuildPath: 'test',
-    universalRender: async () => '<div>test</div>'
+    universalRender: () => Promise.resolve('<div>test</div>')
   };
   const middleware = universalMiddleware(config);
   jest.spyOn(fs, 'readFile').mockImplementation((filepath, enc, callback) => {
@@ -136,7 +136,7 @@ test('handle undefined and not sending response', () => {
 test('handle undefined and not sending response for async', () => {
   const config = {
     clientBuildPath: 'test',
-    universalRender: async () => undefined
+    universalRender: () => Promise.resolve(undefined)
   };
   const middleware = universalMiddleware(config);
   jest.spyOn(fs, 'readFile').mockImplementation((filepath, enc, callback) => {
