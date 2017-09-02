@@ -10,12 +10,7 @@ function handleDevMode(req, res, options) {
     let htmlData = '';
     result.on('data', (chunk) => { htmlData += chunk; });
     result.on('end', () => {
-      try {
-        processRequest(req, res, htmlData, universalRender);
-      } catch (e) {
-        console.error(e.message);
-        return res.status(404).end();
-      }
+      processRequest(req, res, htmlData, universalRender);
     });
   }).on('error', function(e) {
     console.error(e.message);

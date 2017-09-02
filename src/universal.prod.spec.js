@@ -79,3 +79,81 @@ test('send response successfully', () => {
   spy.mockReset();
   spy.mockRestore();
 });
+
+test('support async universal render callback', () => {
+  const config = {
+    clientBuildPath: 'test',
+    universalRender: async () => '<div>test</div>'
+  };
+  const middleware = universalMiddleware(config);
+  jest.spyOn(fs, 'readFile').mockImplementation((filepath, enc, callback) => {
+    const htmlData = '<html><div id="root"></div></html>';
+    callback(null, htmlData);
+  });
+  const spy = jest.spyOn(console, 'error');
+  const mockStatus = {
+    end: jest.fn()
+  };
+  const mockResponse = {
+    send: jest.fn((res) => {
+      expect(res).toBe(
+        `<html><div id="root"><div>test</div></div></html>`
+      );
+    })
+  };
+  middleware({}, mockResponse);
+  expect(console.error).toHaveBeenCalledTimes(0);
+
+  spy.mockReset();
+  spy.mockRestore();
+});
+
+test('handle undefined and not sending response', () => {
+  const config = {
+    clientBuildPath: 'test',
+    universalRender: () => undefined
+  };
+  const middleware = universalMiddleware(config);
+  jest.spyOn(fs, 'readFile').mockImplementation((filepath, enc, callback) => {
+    const htmlData = '<html><div id="root"></div></html>';
+    callback(null, htmlData);
+  });
+  const spy = jest.spyOn(console, 'error');
+  const mockStatus = {
+    end: jest.fn()
+  };
+  const mockResponse = {
+    send: jest.fn()
+  };
+  middleware({}, mockResponse);
+  expect(mockResponse.send).not.toHaveBeenCalled();
+  expect(console.error).toHaveBeenCalledTimes(0);
+
+  spy.mockReset();
+  spy.mockRestore();
+});
+
+test('handle undefined and not sending response for async', () => {
+  const config = {
+    clientBuildPath: 'test',
+    universalRender: async () => undefined
+  };
+  const middleware = universalMiddleware(config);
+  jest.spyOn(fs, 'readFile').mockImplementation((filepath, enc, callback) => {
+    const htmlData = '<html><div id="root"></div></html>';
+    callback(null, htmlData);
+  });
+  const spy = jest.spyOn(console, 'error');
+  const mockStatus = {
+    end: jest.fn()
+  };
+  const mockResponse = {
+    send: jest.fn()
+  };
+  middleware({}, mockResponse);
+  expect(mockResponse.send).not.toHaveBeenCalled();
+  expect(console.error).toHaveBeenCalledTimes(0);
+
+  spy.mockReset();
+  spy.mockRestore();
+});
