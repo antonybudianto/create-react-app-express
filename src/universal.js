@@ -10,19 +10,7 @@ function handleDevMode(req, res, options) {
     let htmlData = '';
     result.on('data', (chunk) => { htmlData += chunk; });
     result.on('end', () => {
-      try {
-        const markup = universalRender(req, res);
-
-        if (markup === null) {
-          return;
-        }
-
-        const RenderedApp = processHtmlData(htmlData, markup);
-        res.send(RenderedApp);
-      } catch (e) {
-        console.error(e.message);
-        return res.status(404).end();
-      }
+      processRequest(req, res, htmlData, universalRender);
     });
   }).on('error', function(e) {
     console.error(e.message);
@@ -32,6 +20,7 @@ function handleDevMode(req, res, options) {
 
 function universalMiddleware(options) {
   const { clientBuildPath, universalRender } = options;
+
   function universalLoader(req, res) {
     if (process.env.NODE_ENV === 'development') {
       handleDevMode(req, res, options);
@@ -46,14 +35,7 @@ function universalMiddleware(options) {
         return res.status(404).end();
       }
 
-      const markup = universalRender(req, res);
-
-      if (markup === null) {
-        return;
-      }
-
-      const RenderedApp = processHtmlData(htmlData, markup);
-      res.send(RenderedApp);
+      processRequest(req, res, htmlData, universalRender);
     });
   }
 
@@ -62,6 +44,28 @@ function universalMiddleware(options) {
 
 function processHtmlData(htmlData, markup) {
   return htmlData.replace('<div id="root"></div>', `<div id="root">${markup}</div>`);
+}
+
+function processRequest(req, res, htmlData, universalRender) {
+  const result = universalRender(req, res);
+
+  if (result === undefined) {
+    return;
+  }
+
+  if (result instanceof Promise) {
+    result.then((markup) => {
+      if (markup === undefined) {
+        return;
+      }
+      const RenderedApp = processHtmlData(htmlData, markup);
+      res.send(RenderedApp);
+    });
+    return;
+  }
+
+  const RenderedApp = processHtmlData(htmlData, result);
+  res.send(RenderedApp);
 }
 
 module.exports = universalMiddleware;
