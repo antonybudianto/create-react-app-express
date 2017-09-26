@@ -1,6 +1,6 @@
 {
   "name": "create-react-app-express",
-  "version": "0.7.0",
+  "version": "1.0.0",
   "description": "Express server for your Create React App, ready for SSR",
   "main": "src/index.js",
   "scripts": {
@@ -26,14 +26,14 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-react-app": "^3.0.2",
     "http-proxy-middleware": "0.17.4",
-    "jest": "^20.0.4"
+    "jest": "^21.2.0"
   },
   "dependencies": {
-    "body-parser": "^1.17.2",
+    "body-parser": "^1.18.2",
     "compression": "^1.7.0",
-    "express": "^4.15.4",
+    "express": "^4.15.5",
     "morgan": "^1.8.2",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   }
 }

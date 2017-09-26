@@ -46,26 +46,34 @@ function processHtmlData(htmlData, markup) {
   return htmlData.replace('<div id="root"></div>', `<div id="root">${markup}</div>`);
 }
 
-function processRequest(req, res, htmlData, universalRender) {
-  const result = universalRender(req, res);
+function handleStream(req, res, stream, htmlData) {
+  const segments = htmlData.split(`<div id="root">`);
+  res.write(segments[0] + `<div id="root">`);
+  stream.pipe(res, { end: false })
+  stream.on('end', () => {
+    res.write(segments[1]);
+    res.end();
+  });
+}
 
-  if (result === undefined) {
+function processRequest(req, res, htmlData, universalRender) {
+  const stream = universalRender(req, res);
+
+  if (stream === undefined) {
     return;
   }
 
-  if (result instanceof Promise) {
-    result.then((markup) => {
-      if (markup === undefined) {
+  if (stream instanceof Promise) {
+    stream.then((stream) => {
+      if (stream === undefined) {
         return;
       }
-      const RenderedApp = processHtmlData(htmlData, markup);
-      res.send(RenderedApp);
+      handleStream(req, res, stream, htmlData);
     });
     return;
   }
 
-  const RenderedApp = processHtmlData(htmlData, result);
-  res.send(RenderedApp);
+  handleStream(req, res, stream, htmlData);
 }
 
 module.exports = universalMiddleware;

@@ -56,7 +56,10 @@ test('handle read error correctly', () => {
 test('send response successfully', () => {
   const config = {
     clientBuildPath: 'test',
-    universalRender: () => '<div>test</div>'
+    universalRender: () => ({
+      on: jest.fn(),
+      pipe: jest.fn()
+    })
   };
   const middleware = universalMiddleware(config);
   jest.spyOn(fs, 'readFile').mockImplementation((filepath, enc, callback) => {
@@ -68,11 +71,12 @@ test('send response successfully', () => {
     end: jest.fn()
   };
   const mockResponse = {
+    write: jest.fn(),
     send: jest.fn()
   };
   middleware({}, mockResponse);
-  expect(mockResponse.send).toHaveBeenCalledWith(
-    `<html><div id="root"><div>test</div></div></html>`
+  expect(mockResponse.write).toHaveBeenCalledWith(
+    `<html><div id=\"root\">`
   );
   expect(console.error).toHaveBeenCalledTimes(0);
 
