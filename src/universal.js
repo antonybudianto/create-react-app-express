@@ -44,10 +44,6 @@ function universalMiddleware(options) {
   return universalLoader;
 }
 
-function processHtmlData(htmlData, markup) {
-  return htmlData.replace('<div id="root"></div>', `<div id="root">${markup}</div>`);
-}
-
 function handleStream(req, res, stream, htmlData) {
   const segments = htmlData.split(`<div id="root">`);
   res.write(segments[0] + `<div id="root">`);

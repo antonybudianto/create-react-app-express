@@ -57,7 +57,11 @@ test('send response successfully', () => {
   const config = {
     clientBuildPath: 'test',
     universalRender: () => ({
-      on: jest.fn(),
+      on: jest.fn((type, callback) => {
+        if (type === 'end') {
+          callback();
+        }
+      }),
       pipe: jest.fn()
     })
   };
@@ -72,13 +76,16 @@ test('send response successfully', () => {
   };
   const mockResponse = {
     write: jest.fn(),
-    send: jest.fn()
+    send: jest.fn(),
+    end: jest.fn()
   };
   middleware({}, mockResponse);
   expect(mockResponse.write).toHaveBeenCalledWith(
     `<html><div id=\"root\">`
   );
   expect(console.error).toHaveBeenCalledTimes(0);
+  expect(mockResponse.end).toHaveBeenCalledTimes(1);
+  expect(mockResponse.write).toHaveBeenCalledTimes(2);
 
   spy.mockReset();
   spy.mockRestore();
