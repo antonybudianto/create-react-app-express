@@ -92,9 +92,13 @@ test('send response successfully', () => {
 });
 
 test('support async universal render callback', () => {
+  const mockStream = {
+    on: jest.fn(),
+    pipe: jest.fn()
+  };
   const config = {
     clientBuildPath: 'test',
-    universalRender: () => Promise.resolve('<div>test</div>')
+    universalRender: () => Promise.resolve(mockStream)
   };
   const middleware = universalMiddleware(config);
   jest.spyOn(fs, 'readFile').mockImplementation((filepath, enc, callback) => {
@@ -106,6 +110,7 @@ test('support async universal render callback', () => {
     end: jest.fn()
   };
   const mockResponse = {
+    write: jest.fn(),
     send: jest.fn((res) => {
       expect(res).toBe(
         `<html><div id="root"><div>test</div></div></html>`

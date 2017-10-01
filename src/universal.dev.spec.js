@@ -67,6 +67,7 @@ test('should handle http get error', () => {
     end: jest.fn()
   };
   const mockResponse = {
+    write: jest.fn(),
     status: jest.fn(() => mockStatus)
   };
   middleware({}, mockResponse);
