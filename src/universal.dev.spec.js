@@ -109,8 +109,7 @@ test('send response successfully', () => {
     end: jest.fn()
   };
   const mockResponse = {
-    write: jest.fn(),
-    send: jest.fn()
+    write: jest.fn()
   };
   middleware({}, mockResponse);
   expect(mockResponse.write).toHaveBeenCalledWith(
