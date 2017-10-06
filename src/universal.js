@@ -2,10 +2,12 @@ const path = require('path');
 const fs = require('fs');
 const http = require('http');
 
+const CRA_CLIENT_PORT = process.env.PORT || 3000;
+
 function handleDevMode(req, res, options) {
   const { universalRender } = options;
 
-  http.get('http://localhost:3000/index.html', function (result) {
+  http.get(`http://localhost:${CRA_CLIENT_PORT}/index.html`, function (result) {
     result.setEncoding('utf8');
     let htmlData = '';
     result.on('data', (chunk) => { htmlData += chunk; });
@@ -40,10 +42,6 @@ function universalMiddleware(options) {
   }
 
   return universalLoader;
-}
-
-function processHtmlData(htmlData, markup) {
-  return htmlData.replace('<div id="root"></div>', `<div id="root">${markup}</div>`);
 }
 
 function handleStream(req, res, stream, htmlData) {

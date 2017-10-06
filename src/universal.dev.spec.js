@@ -67,6 +67,7 @@ test('should handle http get error', () => {
     end: jest.fn()
   };
   const mockResponse = {
+    write: jest.fn(),
     status: jest.fn(() => mockStatus)
   };
   middleware({}, mockResponse);
@@ -83,7 +84,11 @@ test('send response successfully', () => {
   const config = {
     clientBuildPath: 'test',
     universalRender: () => ({
-      on: jest.fn(),
+      on: jest.fn((type, callback) => {
+        if (type === 'end') {
+          callback();
+        }
+      }),
       pipe: jest.fn()
     })
   };
@@ -104,18 +109,16 @@ test('send response successfully', () => {
       on: jest.fn()
     };
   });
-  const mockStatus = {
-    end: jest.fn()
-  };
   const mockResponse = {
     write: jest.fn(),
-    send: jest.fn()
+    end: jest.fn()
   };
   middleware({}, mockResponse);
-  expect(mockResponse.write).toHaveBeenCalledWith(
-    `<html><div id=\"root\">`
-  );
+  expect(mockResponse.write).toHaveBeenCalledTimes(2);
+  expect(mockResponse.end).toHaveBeenCalledTimes(1);
   expect(console.error).toHaveBeenCalledTimes(0);
+  expect(mockResponse.write.mock.calls[0]).toEqual(["<html><div id=\"root\">"]);
+  expect(mockResponse.write.mock.calls[1]).toEqual(["</div></html>"]);
 
   spy.mockReset();
 });
