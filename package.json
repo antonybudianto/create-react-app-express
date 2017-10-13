@@ -1,6 +1,6 @@
 {
   "name": "create-react-app-express",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Express server for your Create React App, ready for SSR",
   "main": "src/index.js",
   "scripts": {
@@ -24,15 +24,15 @@
   "homepage": "https://github.com/antonybudianto/create-react-app-express#readme",
   "devDependencies": {
     "babel-preset-env": "^1.6.0",
-    "babel-preset-react-app": "^3.0.2",
+    "babel-preset-react-app": "^3.0.3",
     "http-proxy-middleware": "0.17.4",
-    "jest": "^21.2.0"
+    "jest": "^21.2.1"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
-    "compression": "^1.7.0",
-    "express": "^4.15.5",
-    "morgan": "^1.8.2",
+    "compression": "^1.7.1",
+    "express": "^4.16.2",
+    "morgan": "^1.9.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
   }
