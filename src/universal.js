@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const http = require('http');
 
-const CRA_CLIENT_PORT = process.env.PORT || 3000;
+const CRA_CLIENT_PORT = process.env.CRA_CLIENT_PORT || 3000;
 
 function handleDevMode(req, res, options) {
   const { universalRender } = options;

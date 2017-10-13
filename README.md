@@ -9,6 +9,11 @@ Express server for your Create React App projects featuring server-side renderin
 
 Please visit [Create React App Universal CLI](https://github.com/antonybudianto/cra-universal) for the usage.
 
+### How it works
+- In development mode, the middleware will try to proxy into the CRA client to get the required `index.html`, and then proceed to render on the server
+- By default, the middleware will try to use default CRA client port (3000), and you can change it using `CRA_CLIENT_PORT` env variable
+- In production mode, the middleware will get the `index.html` from your CRA client build
+
 ### Credits
 - Based on https://github.com/ayroblu/ssr-create-react-app-v2
 
