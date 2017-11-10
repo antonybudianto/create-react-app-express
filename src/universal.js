@@ -5,14 +5,12 @@ const http = require('http');
 const CRA_CLIENT_PORT = process.env.CRA_CLIENT_PORT || 3000;
 
 function handleDevMode(req, res, options) {
-  const { universalRender } = options;
-
   http.get(`http://localhost:${CRA_CLIENT_PORT}/index.html`, function (result) {
     result.setEncoding('utf8');
     let htmlData = '';
     result.on('data', (chunk) => { htmlData += chunk; });
     result.on('end', () => {
-      processRequest(req, res, htmlData, universalRender);
+      processRequest(req, res, htmlData, options);
     });
   }).on('error', function(e) {
     console.error(e.message);
@@ -21,7 +19,7 @@ function handleDevMode(req, res, options) {
 }
 
 function universalMiddleware(options) {
-  const { clientBuildPath, universalRender } = options;
+  const { clientBuildPath } = options;
 
   function universalLoader(req, res) {
     if (process.env.NODE_ENV === 'development') {
@@ -37,24 +35,28 @@ function universalMiddleware(options) {
         return res.status(404).end();
       }
 
-      processRequest(req, res, htmlData, universalRender);
+      processRequest(req, res, htmlData, options);
     });
   }
 
   return universalLoader;
 }
 
-function handleStream(req, res, stream, htmlData) {
+function handleStream(req, res, stream, htmlData, options) {
   const segments = htmlData.split(`<div id="root">`);
   res.write(segments[0] + `<div id="root">`);
   stream.pipe(res, { end: false })
   stream.on('end', () => {
+    if (options.onEndReplace) {
+      segments[1] = options.onEndReplace(segments[1])
+    }
     res.write(segments[1]);
     res.end();
   });
 }
 
-function processRequest(req, res, htmlData, universalRender) {
+function processRequest(req, res, htmlData, options) {
+  const { universalRender } = options
   const stream = universalRender(req, res);
 
   if (stream === undefined) {
@@ -66,12 +68,12 @@ function processRequest(req, res, htmlData, universalRender) {
       if (stream === undefined) {
         return;
       }
-      handleStream(req, res, stream, htmlData);
+      handleStream(req, res, stream, htmlData, options);
     });
     return;
   }
 
-  handleStream(req, res, stream, htmlData);
+  handleStream(req, res, stream, htmlData, options);
 }
 
 module.exports = universalMiddleware;

@@ -86,6 +86,41 @@ test('send response successfully', () => {
   spy.mockRestore();
 });
 
+test('send response successfully with onEndReplace callback', () => {
+  const config = {
+    clientBuildPath: 'test',
+    onEndReplace: jest.fn(html => html),
+    universalRender: () => ({
+      on: jest.fn((type, callback) => {
+        if (type === 'end') {
+          callback();
+        }
+      }),
+      pipe: jest.fn()
+    })
+  };
+  const middleware = universalMiddleware(config);
+  jest.spyOn(fs, 'readFile').mockImplementation((filepath, enc, callback) => {
+    const htmlData = '<html><div id="root"></div></html>';
+    callback(null, htmlData);
+  });
+  const spy = jest.spyOn(console, 'error');
+  const mockResponse = {
+    write: jest.fn(),
+    end: jest.fn()
+  };
+  middleware({}, mockResponse);
+  expect(console.error).toHaveBeenCalledTimes(0);
+  expect(mockResponse.end).toHaveBeenCalledTimes(1);
+  expect(mockResponse.write).toHaveBeenCalledTimes(2);
+  expect(mockResponse.write.mock.calls[0]).toEqual(["<html><div id=\"root\">"]);
+  expect(mockResponse.write.mock.calls[1]).toEqual(["</div></html>"]);
+  expect(config.onEndReplace).toHaveBeenCalledWith("</div></html>");
+
+  spy.mockReset();
+  spy.mockRestore();
+});
+
 test('send response successfully and close tag correctly', () => {
   const config = {
     clientBuildPath: 'test',
