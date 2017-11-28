@@ -7,7 +7,7 @@ function createReactAppExpress(options) {
   const { clientBuildPath } = options;
   const universalLoader = require('./universal')(options);
 
-  const app = express();
+  const app = options.expressApp || express();
 
   // Support Gzip
   app.use(compression());
