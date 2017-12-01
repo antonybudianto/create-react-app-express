@@ -14,6 +14,14 @@ Please visit [Create React App Universal CLI](https://github.com/antonybudianto/
 - By default, the middleware will try to use default CRA client port (3000), and you can change it using `CRA_CLIENT_PORT` env variable
 - In production mode, the middleware will get the `index.html` from your CRA client build
 
+### Public exports
+```
+const { createReactAppExpress, handleUniversalRender } = require('create-react-app-express');
+const { staticLoader, universalLoader } = require('create-react-app-express/lib/loaders');
+
+// Most basic SSR will use the first exports, the second one will be used by existing express project or further customization
+```
+
 ### Credits
 - Based on https://github.com/ayroblu/ssr-create-react-app-v2
 

@@ -18,7 +18,7 @@ function handleDevMode(req, res, options) {
   });
 }
 
-function universalMiddleware(options) {
+function createUniversalMiddleware(options) {
   const { clientBuildPath } = options;
 
   function universalLoader(req, res) {
@@ -76,4 +76,4 @@ function processRequest(req, res, htmlData, options) {
   handleStream(req, res, stream, htmlData, options);
 }
 
-module.exports = universalMiddleware;
+export default createUniversalMiddleware;

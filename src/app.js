@@ -9,4 +9,4 @@ function createReactAppExpress (options) {
   return app;
 }
 
-module.exports = createReactAppExpress;
+export default createReactAppExpress;

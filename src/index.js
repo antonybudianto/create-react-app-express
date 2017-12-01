@@ -1,11 +1,7 @@
-const createReactAppExpress = require('./app');
-const handleUniversalRender = require('./handle-universal-render');
-const staticLoader = require('./loaders/static-loader');
-const universalLoader = require('./loaders/universal-loader');
+import createReactAppExpress from './app';
+import handleUniversalRender from './handle-universal-render';
 
-module.exports = {
-  createReactAppExpress: createReactAppExpress,
-  handleUniversalRender: handleUniversalRender,
-  staticLoader: staticLoader,
-  universalLoader: universalLoader
+export {
+  createReactAppExpress,
+  handleUniversalRender
 };

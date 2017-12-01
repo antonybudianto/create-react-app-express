@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const compression = require('compression');
 const proxy = require('http-proxy-middleware');
 
-function staticLoader (app, options) {
+function staticLoader(app, options) {
   const { clientBuildPath } = options;
 
   app.use(compression());
@@ -29,4 +29,4 @@ function staticLoader (app, options) {
   return app;
 }
 
-module.exports = staticLoader;
+export default staticLoader;

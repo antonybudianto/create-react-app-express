@@ -5,4 +5,4 @@ function handleUniversalRender(reactElement) {
   return (req, res) => renderToNodeStream(reactElement);
 }
 
-module.exports = handleUniversalRender;
+export default handleUniversalRender;
