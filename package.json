@@ -9,7 +9,7 @@
   "scripts": {
     "build": "babel src -d lib --ignore spec.js",
     "test": "jest",
-    "release": "np"
+    "release": "np --otp"
   },
   "repository": {
     "type": "git",
