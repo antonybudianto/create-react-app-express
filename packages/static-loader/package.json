@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Static loader",
   "main": "lib/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "babel src -d lib --ignore spec.js",
     "test": "exit 0"
