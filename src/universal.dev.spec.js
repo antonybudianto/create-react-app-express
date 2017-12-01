@@ -1,6 +1,7 @@
+import universalMiddleware from './universal';
+
 process.env.NODE_ENV = 'development';
 
-const universalMiddleware = require('./universal');
 jest.mock('http');
 const http = require('http');
 
