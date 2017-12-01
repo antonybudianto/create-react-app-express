@@ -1,6 +1,6 @@
 const express = require('express');
-const staticLoader = require('./loaders/static-loader');
-const universalLoader = require('./loaders/universal-loader');
+const staticLoader = require('@cra-express/static-loader');
+const universalLoader = require('@cra-express/universal-loader');
 
 function createReactAppExpress (options) {
   const app = express();

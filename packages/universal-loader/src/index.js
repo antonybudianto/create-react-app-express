@@ -1,4 +1,4 @@
-import createUniversalMiddleware from '../universal'
+import createUniversalMiddleware from './universal'
 
 function universalLoader(app, options) {
   const universalMiddleware = createUniversalMiddleware(options);

@@ -1,15 +1,15 @@
 {
   "name": "create-react-app-express",
   "version": "2.0.0-1",
-  "description": "Express server for your Create React App, ready for SSR",
+  "description": "CRA Express Monorepo",
   "main": "lib/index.js",
-  "files": [
-    "lib"
-  ],
   "scripts": {
-    "build": "babel src -d lib --ignore spec.js",
-    "test": "jest",
-    "release": "np --otp"
+    "build": "lerna run build",
+    "test": "lerna run test",
+    "bootstrap": "lerna bootstrap",
+    "release": "lerna publish",
+    "ls": "lerna ls",
+    "release:c": "npm run release -- --canary"
   },
   "repository": {
     "type": "git",
@@ -31,16 +31,8 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react-app": "^3.1.0",
-    "http-proxy-middleware": "0.17.4",
     "jest": "^21.2.1",
+    "lerna": "^2.5.1",
     "np": "^2.17.0"
-  },
-  "dependencies": {
-    "body-parser": "^1.18.2",
-    "compression": "^1.7.1",
-    "express": "^4.16.2",
-    "morgan": "^1.9.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
   }
 }

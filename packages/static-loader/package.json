@@ -1,0 +1,23 @@
+{
+  "name": "@cra-express/static-loader",
+  "version": "0.1.0",
+  "description": "Static loader",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel src -d lib --ignore spec.js",
+    "test": "exit 0"
+  },
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "express": "4.16.2"
+  },
+  "devDependencies": {
+    "http-proxy-middleware": "^0.17.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "compression": "^1.7.1",
+    "morgan": "^1.9.0"
+  }
+}

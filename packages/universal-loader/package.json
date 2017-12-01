@@ -1,0 +1,12 @@
+{
+  "name": "@cra-express/universal-loader",
+  "version": "0.1.0",
+  "description": "Universal loader",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel src -d lib --ignore spec.js",
+    "test": "jest"
+  },
+  "author": "",
+  "license": "MIT"
+}
