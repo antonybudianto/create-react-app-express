@@ -8,8 +8,8 @@
   },
   "scripts": {
     "build": "babel src -d lib --ignore spec.js",
-    "test": "jest --coverage",
-    "test:dev": "jest"
+    "test": "jest",
+    "test:ci": "jest --coverage"
   },
   "author": "",
   "license": "MIT"

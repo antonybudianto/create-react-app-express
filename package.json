@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "lerna run build",
-    "test": "lerna run test",
+    "test": "lerna run test:ci",
     "bootstrap": "lerna bootstrap",
     "clean": "lerna clean",
     "release": "lerna publish",
