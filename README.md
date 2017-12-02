@@ -20,7 +20,8 @@ import { createReactAppExpress, handleUniversalRender } from '@cra-express/core'
 import staticLoader from '@cra-express/static-loader';
 import universalLoader from '@cra-express/universal-loader';
 
-// Most basic SSR will use the first exports, the second one will be used by existing express project or further customization
+// For starters, you may only use API from core. Unless you want to manage the express instance (e.g.: add new routes on top of universal routes)
+
 // Core package will have both loaders as dependencies by default.
 ```
 
