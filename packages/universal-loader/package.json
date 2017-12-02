@@ -1,6 +1,6 @@
 {
   "name": "@cra-express/universal-loader",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Universal loader",
   "main": "lib/index.js",
   "files": [
