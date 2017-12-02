@@ -3,6 +3,9 @@
   "version": "0.1.1",
   "description": "Universal loader",
   "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "publishConfig": {
     "access": "public"
   },
