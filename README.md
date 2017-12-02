@@ -2,7 +2,7 @@ Create React App Express
 ===========================================
 
 [![Build Status](https://travis-ci.org/antonybudianto/create-react-app-express.svg?branch=master)](https://travis-ci.org/antonybudianto/create-react-app-express)
-[![npm version](https://badge.fury.io/js/create-react-app-express.svg)](https://badge.fury.io/js/create-react-app-express)
+[![npm version](https://badge.fury.io/js/%40cra-express%2Fcore.svg)](https://badge.fury.io/js/%40cra-express%2Fcore)
 [![codecov](https://codecov.io/gh/antonybudianto/create-react-app-express/branch/master/graph/badge.svg)](https://codecov.io/gh/antonybudianto/create-react-app-express)
 
 Express server for your Create React App projects featuring server-side rendering.
