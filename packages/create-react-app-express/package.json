@@ -1,6 +1,6 @@
 {
   "name": "@cra-express/core",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "",
   "main": "lib/index.js",
   "files": [
@@ -14,8 +14,8 @@
     "test": "exit 0"
   },
   "dependencies": {
-    "@cra-express/static-loader": "^0.1.4",
-    "@cra-express/universal-loader": "^0.1.2",
+    "@cra-express/static-loader": "^0.1.5",
+    "@cra-express/universal-loader": "^0.1.5",
     "express": "4.16.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
