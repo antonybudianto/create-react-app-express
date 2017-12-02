@@ -9,6 +9,7 @@
     "bootstrap": "lerna bootstrap",
     "clean": "lerna clean",
     "clean:build": "lerna exec -- rimraf lib",
+    "prerelease": "npm run build",
     "release": "lerna publish",
     "ls": "lerna ls",
     "release:c": "npm run release -- --canary"
