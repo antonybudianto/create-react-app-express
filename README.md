@@ -15,14 +15,33 @@ Please visit [Create React App Universal CLI](https://github.com/antonybudianto/
 - In production mode, the middleware will get the `index.html` from your CRA client build
 
 ### Public exports
-```
+```js
 import { createReactAppExpress, handleUniversalRender } from '@cra-express/core';
 import staticLoader from '@cra-express/static-loader';
 import universalLoader from '@cra-express/universal-loader';
 
-// For starters, you may only use API from core. Unless you want to manage the express instance (e.g.: add new routes on top of universal routes)
-
 // Core package will have both loaders as dependencies by default.
+// Basic usage
+const {default: App} = require('../../src/App');
+const clientBuildPath = path.resolve(__dirname, 'client');
+const app = createReactAppExpress({
+  clientBuildPath,
+  universalRender: handleUniversalRender(<App />)
+});
+app.listen(3000);
+
+// For starters, you may only use API from core. Unless you want to manage the express instance (e.g.: add new routes on top of universal routes)
+const app = express();
+app.get('/api', (req, res) => {
+  res.json({
+    message: 'Hello world'
+  });
+});
+staticLoader(app, { clientBuildPath });
+universalLoader(app, {
+  universalRender: handleUniversalRender(<App />)
+});
+app.listen(3000);
 ```
 
 ### Credits
