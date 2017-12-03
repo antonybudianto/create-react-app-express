@@ -1,6 +1,7 @@
+import universalMiddleware from './universal';
+
 process.env.NODE_ENV = 'production';
 
-const universalMiddleware = require('./universal');
 jest.mock('fs');
 const fs = require('fs');
 

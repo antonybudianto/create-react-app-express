@@ -1,0 +1,19 @@
+{
+  "name": "@cra-express/universal-loader",
+  "version": "0.1.5",
+  "description": "Universal loader",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "babel src -d lib --ignore spec.js",
+    "test": "jest",
+    "test:ci": "jest --coverage"
+  },
+  "author": "",
+  "license": "MIT"
+}

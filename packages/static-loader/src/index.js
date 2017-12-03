@@ -1,22 +1,15 @@
-const bodyParser = require('body-parser');
-const compression = require('compression');
 const express = require('express');
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const compression = require('compression');
+const proxy = require('http-proxy-middleware');
 
-function createReactAppExpress(options) {
+function staticLoader(app, options) {
   const { clientBuildPath } = options;
-  const universalLoader = require('./universal')(options);
 
-  const app = express();
-
-  // Support Gzip
   app.use(compression());
-
-  // Support post requests with body data (doesn't support multipart, use multer)
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
-
-  // Setup logger
   app.use(morgan('combined'));
 
   // Serve static assets
@@ -33,10 +26,7 @@ function createReactAppExpress(options) {
     app.use(express.static(clientBuildPath, { index: false }));
   }
 
-  // Always return the main index.html, so react-router render the route in the client
-  app.use('/', universalLoader);
-
   return app;
 }
 
-module.exports = createReactAppExpress;
+export default staticLoader;

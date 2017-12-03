@@ -1,11 +1,18 @@
 {
   "name": "create-react-app-express",
-  "version": "1.1.1",
-  "description": "Express server for your Create React App, ready for SSR",
-  "main": "src/index.js",
+  "version": "2.0.0-1",
+  "description": "CRA Express Monorepo",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "jest",
-    "release": "np"
+    "build": "lerna run build",
+    "test": "lerna run test:ci",
+    "bootstrap": "lerna bootstrap",
+    "clean": "lerna clean",
+    "clean:build": "lerna exec -- rimraf lib",
+    "prerelease": "npm run build",
+    "release": "lerna publish",
+    "ls": "lerna ls",
+    "release:c": "npm run release -- --canary"
   },
   "repository": {
     "type": "git",
@@ -24,18 +31,11 @@
   },
   "homepage": "https://github.com/antonybudianto/create-react-app-express#readme",
   "devDependencies": {
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-react-app": "^3.0.3",
-    "http-proxy-middleware": "0.17.4",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react-app": "^3.1.0",
     "jest": "^21.2.1",
-    "np": "^2.16.1"
-  },
-  "dependencies": {
-    "body-parser": "^1.18.2",
-    "compression": "^1.7.1",
-    "express": "^4.16.2",
-    "morgan": "^1.9.0",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "lerna": "^2.5.1",
+    "rimraf": "^2.6.2"
   }
 }
