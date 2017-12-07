@@ -42,6 +42,15 @@ universalLoader(app, {
   universalRender: handleUniversalRender(<App />)
 });
 app.listen(3000);
+
+// By default, CRA express will use Node stream for rendering. You can also use string rendering if you want.
+import { renderToString } from 'react-dom/server';
+import stringRenderer from '@cra-universal/universal-loader/lib/renderer/string-renderer';
+
+universalLoader(app, {
+  handleRender: stringRenderer,
+  universalRender: (req, res) => renderToString(<App />)
+});
 ```
 
 ### Credits

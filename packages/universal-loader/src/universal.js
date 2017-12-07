@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const http = require('http');
+const streamRenderer = require('./renderer/stream-renderer').default;
 
 const CRA_CLIENT_PORT = process.env.CRA_CLIENT_PORT || 3000;
 
@@ -42,38 +43,25 @@ function createUniversalMiddleware(options) {
   return universalLoader;
 }
 
-function handleStream(req, res, stream, htmlData, options) {
-  const segments = htmlData.split(`<div id="root">`);
-  res.write(segments[0] + `<div id="root">`);
-  stream.pipe(res, { end: false })
-  stream.on('end', () => {
-    if (options.onEndReplace) {
-      segments[1] = options.onEndReplace(segments[1])
-    }
-    res.write(segments[1]);
-    res.end();
-  });
-}
-
 function processRequest(req, res, htmlData, options) {
-  const { universalRender } = options
-  const stream = universalRender(req, res);
+  const { universalRender, handleRender = streamRenderer } = options
+  const data = universalRender(req, res);
 
-  if (stream === undefined) {
+  if (data === undefined) {
     return;
   }
 
-  if (stream instanceof Promise) {
-    stream.then((stream) => {
-      if (stream === undefined) {
+  if (data instanceof Promise) {
+    data.then((resolvedData) => {
+      if (resolvedData === undefined) {
         return;
       }
-      handleStream(req, res, stream, htmlData, options);
+      handleRender(req, res, resolvedData, htmlData, options);
     });
     return;
   }
 
-  handleStream(req, res, stream, htmlData, options);
+  handleRender(req, res, data, htmlData, options);
 }
 
 export default createUniversalMiddleware;
