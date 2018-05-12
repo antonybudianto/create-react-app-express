@@ -1,0 +1,20 @@
+import { matchRoutes } from 'react-router-config'
+
+function getInitialData(ctx, store, routes) {
+  const promises = matchRoutes(routes, ctx.req.path)
+    .map(({ route, match }) => {
+      return {
+        component: route.component,
+        match
+      }
+    })
+    .filter(result => result.component.loadData)
+    .map(result => result.component.loadData({
+      ctx,
+      store,
+      match: result.match
+    }))
+  return Promise.all(promises)
+}
+
+export default getInitialData
