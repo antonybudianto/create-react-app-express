@@ -7,6 +7,7 @@
     "build": "lerna run build",
     "test": "lerna run test:ci",
     "test:ul": "lerna exec --scope @cra-express/universal-loader -- jest",
+    "test:rp": "lerna exec --scope @cra-express/redux-prefetcher -- jest",
     "bootstrap": "lerna bootstrap",
     "clean": "lerna clean",
     "clean:build": "lerna exec -- rimraf lib",
