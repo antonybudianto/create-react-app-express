@@ -1,6 +1,6 @@
 import { matchRoutes } from 'react-router-config'
 
-function getInitialData(ctx, store, routes) {
+export function getInitialData(ctx, store, routes) {
   const promises = matchRoutes(routes, ctx.req.path)
     .map(({ route, match }) => {
       return {
@@ -16,5 +16,3 @@ function getInitialData(ctx, store, routes) {
     }))
   return Promise.all(promises)
 }
-
-export default getInitialData
