@@ -16,14 +16,14 @@
   "author": "",
   "license": "MIT",
   "peerDependencies": {
-    "express": "^4.16.2"
+    "express": "4.16.2"
   },
   "devDependencies": {
-    "http-proxy-middleware": "^0.17.4"
+    "express": "4.16.2",
+    "http-proxy-middleware": "^0.18.0"
   },
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "compression": "^1.7.1",
-    "morgan": "^1.9.0"
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.2"
   }
 }
