@@ -21,7 +21,7 @@ function staticLoader(app, options) {
         ws: true
       })
     );
-    console.log("Connected to CRA Client dev serversss");
+    console.log("Connected to CRA Client dev server");
   } else {
     app.use(express.static(clientBuildPath, { index: false }));
   }
