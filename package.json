@@ -6,6 +6,7 @@
   "scripts": {
     "build": "lerna run build",
     "test": "lerna run test:ci",
+    "watch": "lerna run --parallel watch",
     "test:ul": "lerna exec --scope @cra-express/universal-loader -- jest",
     "test:rp": "lerna exec --scope @cra-express/redux-prefetcher -- jest",
     "bootstrap": "lerna bootstrap",

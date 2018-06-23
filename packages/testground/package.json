@@ -1,0 +1,22 @@
+{
+  "name": "testground",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@cra-express/core": "^2.2.4-0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "crau:start": "NODE_ENV=development cra-universal start",
+    "crau:build": "NODE_ENV=production cra-universal build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "cra-universal": "^3.0.0-1"
+  }
+}
