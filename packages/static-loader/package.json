@@ -16,7 +16,7 @@
   "author": "",
   "license": "MIT",
   "peerDependencies": {
-    "express": "^4.16.3"
+    "express": "4.16.2"
   },
   "devDependencies": {
     "http-proxy-middleware": "^0.18.0"
