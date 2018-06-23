@@ -6,7 +6,11 @@ node_js:
   - "6.0"
 before_script:
   - yarn bootstrap
-script: npm test
+script:
+  - npm test
+  - yarn build
+  - cd packages/testground
+  - yarn crau:build
 after_script:
   - yarn global add codecov
   - codecov
