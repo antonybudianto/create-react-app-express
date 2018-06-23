@@ -3,7 +3,7 @@ language: node_js
 node_js:
   - "8.0"
   - "7.0"
-  - "6.2.2"
+  - "6.9"
 before_script:
   - yarn bootstrap
 script:
