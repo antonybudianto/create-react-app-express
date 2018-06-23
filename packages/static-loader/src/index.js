@@ -1,5 +1,4 @@
 const express = require("express");
-const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const compression = require("compression");
 
@@ -9,7 +8,6 @@ function staticLoader(app, options) {
   app.use(compression());
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(morgan("combined"));
 
   // Serve static assets
   if (process.env.NODE_ENV === "development") {
@@ -23,7 +21,7 @@ function staticLoader(app, options) {
         ws: true
       })
     );
-    console.log("Connected to CRA Client dev server");
+    console.log("Connected to CRA Client dev serversss");
   } else {
     app.use(express.static(clientBuildPath, { index: false }));
   }
