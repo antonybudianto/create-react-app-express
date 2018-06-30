@@ -1,9 +1,9 @@
 {
   "name": "testground",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "private": true,
   "dependencies": {
-    "@cra-express/core": "^2.2.4",
+    "@cra-express/core": "^2.2.5",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4"
