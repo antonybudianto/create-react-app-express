@@ -1,4 +1,6 @@
 import createUniversalMiddleware from './universal'
+import stringRenderer from './renderer/string-renderer'
+import streamRenderer from './renderer/stream-renderer'
 
 function universalLoader(app, options) {
   const universalMiddleware = createUniversalMiddleware(options);
@@ -7,3 +9,4 @@ function universalLoader(app, options) {
 }
 
 export default universalLoader;
+export { stringRenderer, streamRenderer };

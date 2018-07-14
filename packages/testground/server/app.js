@@ -5,7 +5,7 @@ import {
   createReactAppExpress
 } from '@cra-express/core';
 import App from '../src/App';
-import stringRenderer from '@cra-express/universal-loader/lib/renderer/string-renderer';
+import { stringRenderer } from '@cra-express/universal-loader';
 
 const clientBuildPath = path.resolve(__dirname, '../client');
 const app = createReactAppExpress({
